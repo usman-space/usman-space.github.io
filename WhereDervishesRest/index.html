@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where Dervishes Rest — Digital Media Hub | Usman Aslam</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0b1116;
+      --card-bg: #131d24;
+      --card-border: rgba(212, 136, 40, 0.2);
+      --teal-primary: #123d4f;
+      --teal-accent: #1e5a73;
+      --gold-primary: #d48828;
+      --gold-glow: #f0b243;
+      --text-light: #f3edd9;
+      --text-muted: #a6b4c0;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 136, 40, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(18, 61, 79, 0.3) 0%, transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* Header & Hero Area */
+    header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .book-subtitle-top {
+      font-family: var(--font-serif);
+      color: var(--gold-primary);
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h1.book-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      color: var(--text-light);
+      line-height: 1.1;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      margin-bottom: 0.75rem;
+    }
+
+    .book-subtitle {
+      font-family: var(--font-serif);
+      color: var(--gold-glow);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 1.5rem auto;
+      color: var(--gold-primary);
+    }
+
+    .hero-divider::before, .hero-divider::after {
+      content: "";
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary));
+    }
+    .hero-divider::after {
+      background: linear-gradient(270deg, transparent, var(--gold-primary));
+    }
+
+    .author-name {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--gold-glow);
+      letter-spacing: 2px;
+      margin: 2.5rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(212, 136, 40, 0.2);
+    }
+
+    /* Chapter Cards Grid */
+    .chapters-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .chapter-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .chapter-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold-primary), var(--teal-accent));
+      opacity: 0.7;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 8px 25px rgba(212, 136, 40, 0.12);
+    }
+
+    .chapter-num {
+      font-family: var(--font-serif);
+      color: var(--gold-primary);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .chapter-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .chapter-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .btn-album {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--teal-primary), var(--teal-accent));
+      color: var(--text-light);
+      border: 1px solid rgba(240, 178, 67, 0.3);
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-album:hover {
+      background: linear-gradient(135deg, var(--gold-primary), #b36e1a);
+      color: #fff;
+      border-color: var(--gold-glow);
+    }
+
+    /* Master Downloads Section */
+    .downloads-box {
+      background: linear-gradient(180deg, rgba(18, 61, 79, 0.3), var(--card-bg));
+      border: 1px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .downloads-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--gold-glow);
+      margin-bottom: 0.5rem;
+    }
+
+    .downloads-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-glow);
+      background: rgba(212, 136, 40, 0.05);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--gold-primary);
+      text-decoration: none;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="book-subtitle-top">Digital Companion & Media Hub</div>
+    <h1 class="book-title">WHERE DERVISHES REST</h1>
+    <div class="book-subtitle">A Modern Journey in Search of Meaning</div>
+    <div class="hero-divider">✦</div>
+    <div class="author-name">BY USMAN ASLAM</div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <div class="section-title">CHAPTER GALLERIES</div>
+
+    <div class="chapters-grid">
+
+      <!-- Chapter 1 -->
+      <div class="chapter-card" id="ch-1">
+        <div class="chapter-num">Chapter 01</div>
+        <h2 class="chapter-title">The Golden Sanctuary (Mashhad)</h2>
+        <p class="chapter-desc">High-resolution imagery of the illuminated golden dome, minarets, and late-night courtyard moments.</p>
+        <a href="https://photos.app.goo.gl/YOUR_MASHHAD_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 2 -->
+      <div class="chapter-card" id="ch-2">
+        <div class="chapter-num">Chapter 02</div>
+        <h2 class="chapter-title">In the Garden of Attar (Nishapur)</h2>
+        <p class="chapter-desc">The turquoise bulbous dome of Attar Neyshaburi set beneath a leafy canopy of mature trees.</p>
+        <a href="https://photos.app.goo.gl/YOUR_NISHAPUR_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 3 -->
+      <div class="chapter-card" id="ch-3">
+        <div class="chapter-num">Chapter 03</div>
+        <h2 class="chapter-title">The Master of Divine Love (Qazvin)</h2>
+        <p class="chapter-desc">Historic alleyways, locked wooden thresholds, and the mirror-work shrine of Ismail Abu Al-Fazal.</p>
+        <a href="https://photos.app.goo.gl/YOUR_QAZVIN_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 4 -->
+      <div class="chapter-card" id="ch-4">
+        <div class="chapter-num">Chapter 04</div>
+        <h2 class="chapter-title">The Ascetic Sanctuary (Bastam)</h2>
+        <p class="chapter-desc">Seljuk brick gateways, the conical turquoise dome, and the simple floor gravestone of Bayazid Bastami.</p>
+        <a href="https://photos.app.goo.gl/YOUR_BASTAM_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 5 -->
+      <div class="chapter-card" id="ch-5">
+        <div class="chapter-num">Chapter 05</div>
+        <h2 class="chapter-title">The Refuge of Love (Kharraqan)</h2>
+        <p class="chapter-desc">The lonely, beautiful mausoleum of Abul Hassan Kharraqani nestled along the open horizons of Khorasan.</p>
+        <a href="https://photos.app.goo.gl/YOUR_KHARRAQAN_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 6 -->
+      <div class="chapter-card" id="ch-6">
+        <div class="chapter-num">Chapter 06</div>
+        <h2 class="chapter-title">The Oasis of Wisdom (Tus)</h2>
+        <p class="chapter-desc">Monumental structures, ancient brick masonry, and quiet gardens honoring Ferdowsi and Ghazali.</p>
+        <a href="https://photos.app.goo.gl/YOUR_TUS_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 7 -->
+      <div class="chapter-card" id="ch-7">
+        <div class="chapter-num">Chapter 07</div>
+        <h2 class="chapter-title">The Highway of Mystics (Tehran to Khorasan)</h2>
+        <p class="chapter-desc">Roadside tea houses, conversations with Sajjad (Shah Ji), and the vast desert landscapes of Iran.</p>
+        <a href="https://photos.app.goo.gl/YOUR_ROAD_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 8 -->
+      <div class="chapter-card" id="ch-8">
+        <div class="chapter-num">Chapter 08</div>
+        <h2 class="chapter-title">The Sacred Courtyards (Rayy & Soltaniyeh)</h2>
+        <p class="chapter-desc">Gilded domes, soaring tilework arches, and the towering Ilkhanid dome of Soltaniyeh.</p>
+        <a href="https://photos.app.goo.gl/YOUR_SOLTANIYEH_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+      <!-- Chapter 9 -->
+      <div class="chapter-card" id="ch-9">
+        <div class="chapter-num">Chapter 09</div>
+        <h2 class="chapter-title">Farewell to Khorasan</h2>
+        <p class="chapter-desc">Final reflections, quiet farewells at twilight, and the journey back toward the city lights.</p>
+        <a href="https://photos.app.goo.gl/YOUR_FAREWELL_LINK" class="btn-album" target="_blank">
+          <span>View Photo Album</span> ↗
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Digital Assets & Downloads -->
+    <div class="downloads-box">
+      <h3 class="downloads-title">Complete Digital Archive</h3>
+      <p class="downloads-desc">Access the full master high-resolution photo collection, interactive PDF, or EPUB version of the manuscript.</p>
+      <div class="btn-group">
+        <a href="https://photos.app.goo.gl/YOUR_MASTER_ALBUM_LINK" class="btn-secondary" target="_blank">Full Photo Gallery</a>
+        <a href="#" class="btn-secondary" target="_blank">Download PDF Edition</a>
+        <a href="#" class="btn-secondary" target="_blank">Download EPUB File</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Usman Aslam — <i>Where Dervishes Rest</i>.</p>
+    <p style="margin-top: 0.4rem; opacity: 0.6;">Hosted securely via <a href="https://abdulqadirjelani.org" target="_blank">Abdul Qadir Jelani Foundation</a></p>
+  </footer>
+
+  <!-- Smart URL Parameter Script -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ch = urlParams.get('ch');
+
+      if (ch) {
+        const chapterMap = {
+          "1": "ch-1", "mashhad": "ch-1",
+          "2": "ch-2", "nishapur": "ch-2",
+          "3": "ch-3", "qazvin": "ch-3",
+          "4": "ch-4", "bastam": "ch-4",
+          "5": "ch-5", "kharraqan": "ch-5",
+          "6": "ch-6", "tus": "ch-6",
+          "7": "ch-7", "highway": "ch-7",
+          "8": "ch-8", "soltaniyeh": "ch-8",
+          "9": "ch-9", "farewell": "ch-9"
+        };
+
+        const targetId = chapterMap[ch.toLowerCase()];
+        if (targetId) {
+          const element = document.getElementById(targetId);
+          if (element) {
+            setTimeout(() => {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              element.style.borderColor = '#f0b243';
+              element.style.boxShadow = '0 0 30px rgba(240, 178, 67, 0.3)';
+            }, 300);
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
