@@ -12,15 +12,13 @@
 
   <style>
     :root {
-      --bg-dark: #0b1116;
-      --card-bg: #131d24;
-      --card-border: rgba(212, 136, 40, 0.2);
-      --teal-primary: #123d4f;
-      --teal-accent: #1e5a73;
-      --gold-primary: #d48828;
-      --gold-glow: #f0b243;
-      --text-light: #f3edd9;
-      --text-muted: #a6b4c0;
+      --bg-cream: #fbf9f4;
+      --card-bg: #ffffff;
+      --card-border: rgba(184, 134, 11, 0.25);
+      --text-dark: #142834; /* Deep midnight blue from half-title page */
+      --text-muted: #5e6d78;
+      --gold-primary: #b8860b; /* Antique gold */
+      --gold-light: #d4af37;
       --font-serif: 'Cinzel', serif;
       --font-sans: 'Plus Jakarta Sans', sans-serif;
     }
@@ -32,24 +30,34 @@
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
       font-family: var(--font-sans);
       line-height: 1.6;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(212, 136, 40, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 100%, rgba(18, 61, 79, 0.3) 0%, transparent 50%);
+      background-image: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.08) 0%, transparent 70%);
       background-attachment: fixed;
       min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* Outer Sacred Manuscript Border Frame */
+    .page-frame {
+      max-width: 900px;
+      margin: 0 auto;
+      border: 2px solid var(--card-border);
+      padding: 2rem 1rem;
+      position: relative;
+      background-color: var(--bg-cream);
+      box-shadow: 0 10px 35px rgba(20, 40, 52, 0.05);
     }
 
     /* Header & Hero Area */
     header {
       text-align: center;
-      padding: 4rem 1.5rem 3rem;
-      max-width: 900px;
+      padding: 2rem 1rem 2.5rem;
+      max-width: 800px;
       margin: 0 auto;
-      position: relative;
+      border-bottom: 1px solid rgba(184, 134, 11, 0.2);
     }
 
     .book-subtitle-top {
@@ -63,19 +71,18 @@
 
     h1.book-title {
       font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
       font-weight: 700;
-      color: var(--text-light);
+      color: var(--text-dark);
       line-height: 1.1;
       letter-spacing: 2px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
       margin-bottom: 0.75rem;
     }
 
     .book-subtitle {
       font-family: var(--font-serif);
-      color: var(--gold-glow);
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--gold-primary);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
       letter-spacing: 1px;
       margin-bottom: 1.5rem;
     }
@@ -85,14 +92,14 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin: 1.5rem auto;
+      margin: 1.25rem auto;
       color: var(--gold-primary);
     }
 
     .hero-divider::before, .hero-divider::after {
       content: "";
       height: 1px;
-      width: 60px;
+      width: 50px;
       background: linear-gradient(90deg, transparent, var(--gold-primary));
     }
     .hero-divider::after {
@@ -104,49 +111,49 @@
       color: var(--text-muted);
       letter-spacing: 2px;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* Container & Layout */
     .container {
-      max-width: 850px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 0 1.5rem 5rem;
+      padding: 2rem 1rem;
     }
 
     .section-title {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--gold-glow);
+      font-size: 1.3rem;
+      color: var(--text-dark);
       letter-spacing: 2px;
-      margin: 2.5rem 0 1.5rem;
+      margin: 2rem 0 1.5rem;
       display: flex;
       align-items: center;
       gap: 12px;
+      text-align: center;
     }
 
-    .section-title::after {
+    .section-title::before, .section-title::after {
       content: "";
       flex: 1;
       height: 1px;
-      background: rgba(212, 136, 40, 0.2);
+      background: rgba(184, 134, 11, 0.25);
     }
 
     /* Chapter Cards Grid */
     .chapters-grid {
       display: grid;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     .chapter-card {
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.75rem;
+      border-radius: 8px;
+      padding: 1.5rem;
       position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .chapter-card::before {
@@ -156,122 +163,128 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(180deg, var(--gold-primary), var(--teal-accent));
-      opacity: 0.7;
+      background: var(--gold-primary);
+      opacity: 0.8;
     }
 
     .chapter-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: var(--gold-primary);
-      box-shadow: 0 8px 25px rgba(212, 136, 40, 0.12);
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.1);
     }
 
     .chapter-num {
       font-family: var(--font-serif);
       color: var(--gold-primary);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
 
     .chapter-title {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
-      color: var(--text-light);
-      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
       font-weight: 600;
     }
 
     .chapter-desc {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.25rem;
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
       font-weight: 300;
     }
 
     .btn-album {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--teal-primary), var(--teal-accent));
-      color: var(--text-light);
-      border: 1px solid rgba(240, 178, 67, 0.3);
-      padding: 0.65rem 1.25rem;
-      border-radius: 6px;
+      gap: 6px;
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--card-border);
+      padding: 0.55rem 1.1rem;
+      border-radius: 4px;
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.5px;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
 
     .btn-album:hover {
-      background: linear-gradient(135deg, var(--gold-primary), #b36e1a);
+      background: var(--gold-primary);
       color: #fff;
-      border-color: var(--gold-glow);
+      border-color: var(--gold-primary);
     }
 
     /* Master Downloads Section */
     .downloads-box {
-      background: linear-gradient(180deg, rgba(18, 61, 79, 0.3), var(--card-bg));
-      border: 1px solid var(--gold-primary);
-      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
       padding: 2rem;
       margin-top: 3rem;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(20, 40, 52, 0.03);
     }
 
     .downloads-title {
       font-family: var(--font-serif);
-      font-size: 1.3rem;
-      color: var(--gold-glow);
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
     }
 
     .downloads-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      margin-bottom: 1.25rem;
     }
 
     .btn-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--text-light);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.65rem 1.25rem;
-      border-radius: 6px;
+      color: var(--text-dark);
+      border: 1px solid var(--card-border);
+      padding: 0.55rem 1.1rem;
+      border-radius: 4px;
       text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: all 0.25s ease;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
-      border-color: var(--gold-primary);
-      color: var(--gold-glow);
-      background: rgba(212, 136, 40, 0.05);
+      background: var(--text-dark);
+      color: #fff;
+      border-color: var(--text-dark);
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 3rem 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 2.5rem 1rem 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(184, 134, 11, 0.2);
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
 
     footer a, header a {
       color: var(--gold-primary);
       text-decoration: none;
+    }
+
+    footer a:hover, header a:hover {
+      text-decoration: underline;
     }
 
     /* Smooth Scroll */
@@ -282,134 +295,136 @@
 </head>
 <body>
 
-  <!-- Header Section -->
-  <header>
-    <div class="book-subtitle-top">Digital Companion & Media Hub</div>
-    <h1 class="book-title">WHERE DERVISHES REST</h1>
-    <div class="book-subtitle">A Modern Journey in Search of Meaning</div>
-    <div class="hero-divider">✦</div>
-    <div class="author-name">BY USMAN ASLAM (under guidance of ALI RAZA)</div>
-    <div class="hero-divider">✦</div>
-    <p style="margin-top: 0.4rem; opacity: 0.6;">Copyright © 2026 by <a href="https://abdulqadirjelani.org" target="_blank">Meeran Muhayyuddin Foundation</a>. All rights reserved.<br>Contact: <a href="mailto:aliusman@duck.com" target="_blank">aliusman@duck.com</a></p>
-  </header>
+  <div class="page-frame">
+    <!-- Header Section -->
+    <header>
+      <div class="book-subtitle-top">Digital Companion & Media Hub</div>
+      <h1 class="book-title">WHERE DERVISHES REST</h1>
+      <div class="book-subtitle">A Modern Journey in Search of Meaning</div>
+      <div class="hero-divider">✦</div>
+      <div class="author-name">BY USMAN ASLAM (under guidance of ALI RAZA)</div>
+      <div class="hero-divider">✦</div>
+      <p style="margin-top: 0.4rem; opacity: 0.8; font-size: 0.85rem;">Copyright © 2026 by <a href="https://abdulqadirjelani.org" target="_blank">Meeran Muhayyuddin Foundation</a>. All rights reserved.<br>Contact: <a href="mailto:aliusman@duck.com" target="_blank">aliusman@duck.com</a></p>
+    </header>
 
-  <!-- Main Content -->
-  <div class="container">
+    <!-- Main Content -->
+    <div class="container">
 
-    <div class="section-title">CHAPTER GALLERIES</div>
+      <div class="section-title">CHAPTER GALLERIES</div>
 
-    <div class="chapters-grid">
+      <div class="chapters-grid">
 
-      <!-- Chapter 1 -->
-      <div class="chapter-card" id="ch-1">
-        <div class="chapter-num">Chapter 01</div>
-        <h2 class="chapter-title">The Golden Sanctuary (Mashhad)</h2>
-        <p class="chapter-desc">High-resolution imagery of the illuminated golden dome, minarets, and late-night courtyard moments.</p>
-        <a href="https://photos.app.goo.gl/YOUR_MASHHAD_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
+        <!-- Chapter 1 -->
+        <div class="chapter-card" id="ch-1">
+          <div class="chapter-num">Chapter 01</div>
+          <h2 class="chapter-title">The Golden Sanctuary (Mashhad)</h2>
+          <p class="chapter-desc">High-resolution imagery of the illuminated golden dome, minarets, and late-night courtyard moments.</p>
+          <a href="https://photos.app.goo.gl/YOUR_MASHHAD_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter-card" id="ch-2">
+          <div class="chapter-num">Chapter 02</div>
+          <h2 class="chapter-title">In the Garden of Attar (Nishapur)</h2>
+          <p class="chapter-desc">The turquoise bulbous dome of Attar Neyshaburi set beneath a leafy canopy of mature trees.</p>
+          <a href="https://photos.app.goo.gl/YOUR_NISHAPUR_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="chapter-card" id="ch-3">
+          <div class="chapter-num">Chapter 03</div>
+          <h2 class="chapter-title">The Master of Divine Love (Qazvin)</h2>
+          <p class="chapter-desc">Historic alleyways, locked wooden thresholds, and the mirror-work shrine of Ismail Abu Al-Fazal.</p>
+          <a href="https://photos.app.goo.gl/YOUR_QAZVIN_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="chapter-card" id="ch-4">
+          <div class="chapter-num">Chapter 04</div>
+          <h2 class="chapter-title">The Ascetic Sanctuary (Bastam)</h2>
+          <p class="chapter-desc">Seljuk brick gateways, the conical turquoise dome, and the simple floor gravestone of Bayazid Bastami.</p>
+          <a href="https://photos.app.goo.gl/YOUR_BASTAM_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="chapter-card" id="ch-5">
+          <div class="chapter-num">Chapter 05</div>
+          <h2 class="chapter-title">The Refuge of Love (Kharraqan)</h2>
+          <p class="chapter-desc">The lonely, beautiful mausoleum of Abul Hassan Kharraqani nestled along the open horizons of Khorasan.</p>
+          <a href="https://photos.app.goo.gl/YOUR_KHARRAQAN_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 6 -->
+        <div class="chapter-card" id="ch-6">
+          <div class="chapter-num">Chapter 06</div>
+          <h2 class="chapter-title">The Oasis of Wisdom (Tus)</h2>
+          <p class="chapter-desc">Monumental structures, ancient brick masonry, and quiet gardens honoring Ferdowsi and Ghazali.</p>
+          <a href="https://photos.app.goo.gl/YOUR_TUS_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 7 -->
+        <div class="chapter-card" id="ch-7">
+          <div class="chapter-num">Chapter 07</div>
+          <h2 class="chapter-title">The Highway of Mystics (Tehran to Khorasan)</h2>
+          <p class="chapter-desc">Roadside tea houses, conversations with Sajjad (Shah Ji), and the vast desert landscapes of Iran.</p>
+          <a href="https://photos.app.goo.gl/YOUR_ROAD_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 8 -->
+        <div class="chapter-card" id="ch-8">
+          <div class="chapter-num">Chapter 08</div>
+          <h2 class="chapter-title">The Sacred Courtyards (Rayy & Soltaniyeh)</h2>
+          <p class="chapter-desc">Gilded domes, soaring tilework arches, and the towering Ilkhanid dome of Soltaniyeh.</p>
+          <a href="https://photos.app.goo.gl/YOUR_SOLTANIYEH_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
+        <!-- Chapter 9 -->
+        <div class="chapter-card" id="ch-9">
+          <div class="chapter-num">Chapter 09</div>
+          <h2 class="chapter-title">Farewell to Khorasan</h2>
+          <p class="chapter-desc">Final reflections, quiet farewells at twilight, and the journey back toward the city lights.</p>
+          <a href="https://photos.app.goo.gl/YOUR_FAREWELL_LINK" class="btn-album" target="_blank">
+            <span>View Photo Album</span> ↗
+          </a>
+        </div>
+
       </div>
 
-      <!-- Chapter 2 -->
-      <div class="chapter-card" id="ch-2">
-        <div class="chapter-num">Chapter 02</div>
-        <h2 class="chapter-title">In the Garden of Attar (Nishapur)</h2>
-        <p class="chapter-desc">The turquoise bulbous dome of Attar Neyshaburi set beneath a leafy canopy of mature trees.</p>
-        <a href="https://photos.app.goo.gl/YOUR_NISHAPUR_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 3 -->
-      <div class="chapter-card" id="ch-3">
-        <div class="chapter-num">Chapter 03</div>
-        <h2 class="chapter-title">The Master of Divine Love (Qazvin)</h2>
-        <p class="chapter-desc">Historic alleyways, locked wooden thresholds, and the mirror-work shrine of Ismail Abu Al-Fazal.</p>
-        <a href="https://photos.app.goo.gl/YOUR_QAZVIN_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 4 -->
-      <div class="chapter-card" id="ch-4">
-        <div class="chapter-num">Chapter 04</div>
-        <h2 class="chapter-title">The Ascetic Sanctuary (Bastam)</h2>
-        <p class="chapter-desc">Seljuk brick gateways, the conical turquoise dome, and the simple floor gravestone of Bayazid Bastami.</p>
-        <a href="https://photos.app.goo.gl/YOUR_BASTAM_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 5 -->
-      <div class="chapter-card" id="ch-5">
-        <div class="chapter-num">Chapter 05</div>
-        <h2 class="chapter-title">The Refuge of Love (Kharraqan)</h2>
-        <p class="chapter-desc">The lonely, beautiful mausoleum of Abul Hassan Kharraqani nestled along the open horizons of Khorasan.</p>
-        <a href="https://photos.app.goo.gl/YOUR_KHARRAQAN_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 6 -->
-      <div class="chapter-card" id="ch-6">
-        <div class="chapter-num">Chapter 06</div>
-        <h2 class="chapter-title">The Oasis of Wisdom (Tus)</h2>
-        <p class="chapter-desc">Monumental structures, ancient brick masonry, and quiet gardens honoring Ferdowsi and Ghazali.</p>
-        <a href="https://photos.app.goo.gl/YOUR_TUS_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 7 -->
-      <div class="chapter-card" id="ch-7">
-        <div class="chapter-num">Chapter 07</div>
-        <h2 class="chapter-title">The Highway of Mystics (Tehran to Khorasan)</h2>
-        <p class="chapter-desc">Roadside tea houses, conversations with Sajjad (Shah Ji), and the vast desert landscapes of Iran.</p>
-        <a href="https://photos.app.goo.gl/YOUR_ROAD_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 8 -->
-      <div class="chapter-card" id="ch-8">
-        <div class="chapter-num">Chapter 08</div>
-        <h2 class="chapter-title">The Sacred Courtyards (Rayy & Soltaniyeh)</h2>
-        <p class="chapter-desc">Gilded domes, soaring tilework arches, and the towering Ilkhanid dome of Soltaniyeh.</p>
-        <a href="https://photos.app.goo.gl/YOUR_SOLTANIYEH_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
-      </div>
-
-      <!-- Chapter 9 -->
-      <div class="chapter-card" id="ch-9">
-        <div class="chapter-num">Chapter 09</div>
-        <h2 class="chapter-title">Farewell to Khorasan</h2>
-        <p class="chapter-desc">Final reflections, quiet farewells at twilight, and the journey back toward the city lights.</p>
-        <a href="https://photos.app.goo.gl/YOUR_FAREWELL_LINK" class="btn-album" target="_blank">
-          <span>View Photo Album</span> ↗
-        </a>
+      <!-- Digital Assets & Downloads -->
+      <div class="downloads-box">
+        <h3 class="downloads-title">Complete Digital Archive</h3>
+        <p class="downloads-desc">Access the full master high-resolution photo collection, interactive PDF, or EPUB version of the manuscript.</p>
+        <div class="btn-group">
+          <a href="https://photos.app.goo.gl/YOUR_MASTER_ALBUM_LINK" class="btn-secondary" target="_blank">Full Photo Gallery</a>
+          <a href="#" class="btn-secondary" target="_blank">Download PDF Edition</a>
+          <a href="#" class="btn-secondary" target="_blank">Download EPUB File</a>
+        </div>
       </div>
 
     </div>
 
-    <!-- Digital Assets & Downloads -->
-    <div class="downloads-box">
-      <h3 class="downloads-title">Complete Digital Archive</h3>
-      <p class="downloads-desc">Access the full master high-resolution photo collection, interactive PDF, or EPUB version of the manuscript.</p>
-      <div class="btn-group">
-        <a href="https://photos.app.goo.gl/YOUR_MASTER_ALBUM_LINK" class="btn-secondary" target="_blank">Full Photo Gallery</a>
-        <a href="#" class="btn-secondary" target="_blank">Download PDF Edition</a>
-        <a href="#" class="btn-secondary" target="_blank">Download EPUB File</a>
-      </div>
-    </div>
-
+    <!-- Footer -->
+    <footer>
+      <p>© Usman Aslam — <i>Where Dervishes Rest</i>.</p>
+      <p style="margin-top: 0.4rem; opacity: 0.7;">Hosted securely via <a href="https://abdulqadirjelani.org" target="_blank">Meeran Muhayyuddin Foundation</a></p>
+    </footer>
   </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>© Usman Aslam — <i>Where Dervishes Rest</i>.</p>
-    <p style="margin-top: 0.4rem; opacity: 0.6;">Hosted securely via <a href="https://abdulqadirjelani.org" target="_blank">Meeran Muhayyuddin Foundation</a></p>
-  </footer>
 
   <!-- Smart URL Parameter Script -->
   <script>
@@ -436,8 +451,8 @@
           if (element) {
             setTimeout(() => {
               element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              element.style.borderColor = '#f0b243';
-              element.style.boxShadow = '0 0 30px rgba(240, 178, 67, 0.3)';
+              element.style.borderColor = '#b8860b';
+              element.style.boxShadow = '0 0 25px rgba(184, 134, 11, 0.25)';
             }, 300);
           }
         }
